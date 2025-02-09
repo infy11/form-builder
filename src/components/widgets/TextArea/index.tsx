@@ -10,7 +10,7 @@ type TextInputProps = {
   isHidden: boolean;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
-function TextAreaWidget({
+function TextArea({
   defaultValue,
   label,
   placeholder,
@@ -32,4 +32,4 @@ function TextAreaWidget({
   );
 }
 
-export default TextAreaWidget;
+export default TextArea;

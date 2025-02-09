@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import Text from "@/components/widgets/Text";
 import TextInput from "@/components/widgets/TextInput";
 import { TypographyH4 } from "@/components/ui/typographyH4";
-import Textarea from "@/components/widgets/Textarea";
+import Textarea from "@/components/widgets/TextArea";
 import NumberInput from "@/components/widgets/NumberInput";
 import { DatePicker } from "@/components/ui/datePicker";
 
