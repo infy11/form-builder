@@ -17,7 +17,7 @@ https://varnit-form-builder.netlify.app/
  - [x] State is getting persisted 
 
 ## Things needs to be covered
- - [x] Support complex components like radio, checkbox, select, etc.
+ - [x] Support complex components like radio, checkbox etc.
  - [x] Unit testing
  - [x] e2e testing
  - [x] virtualization for large forms
