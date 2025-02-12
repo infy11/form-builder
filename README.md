@@ -1,6 +1,6 @@
-## Form builder
+# Form builder
 
-# Deployment status
+## Deployment status
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5bf25eb0-7e17-44ff-9488-26ee0eac56a7/deploy-status)](https://app.netlify.com/sites/varnit-form-builder/deploys)
 
 
