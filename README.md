@@ -7,6 +7,8 @@ https://drive.google.com/file/d/1wM7JDrBNV6nu-jLqGlxic8KiH6cOq5If/view?usp=shari
 ## Live Demo
 https://varnit-form-builder.netlify.app/
 
+# Deployment status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5bf25eb0-7e17-44ff-9488-26ee0eac56a7/deploy-status)](https://app.netlify.com/sites/varnit-form-builder/deploys)
 
 ## Things working well
  - [x] Basic functionality is working fine
