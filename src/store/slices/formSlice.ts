@@ -33,12 +33,20 @@ export const formSlice = createSlice({
       state.form.widgets[action.payload.id].metadata[action.payload.field] =
         action.payload.value;
     },
+    setMetadataOptionsField: (state: FormState, action) => {
+      state.form.widgets[action.payload.widgetId].metadata.options[
+        action.payload.optionId
+      ] = action.payload.value;
+    },
     setValidationField: (state: FormState, action) => {
       state.form.widgets[action.payload.id].validation[action.payload.field] =
         action.payload.value;
     },
     setDeleteMetadataField: (state: FormState, action) => {
       delete state.form.widgets[action.payload.id];
+    },
+    setOrder: (state: FormState, action) => {
+      state.form.widgets[action.payload.id].order = action.payload.order;
     },
     resetState: (state: FormState) => {
       state.form = {
@@ -56,5 +64,7 @@ export const {
   setDeleteMetadataField,
   setValidationField,
   resetState,
+  setOrder,
+  setMetadataOptionsField,
 } = formSlice.actions;
 export default formSlice.reducer;

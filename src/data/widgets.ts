@@ -60,12 +60,43 @@ const widgets = [
   {
     id: "datePicker",
     name: "datePicker",
-    icon: "textArea.svg",
+    icon: "datePicker.svg",
     type: "datePicker",
     metadata: {
       defaultValue: new Date().toDateString(),
       label: "DOB",
       isDisabled: false,
+    },
+    validation: {
+      required: true,
+      maxDate: new Date(),
+    },
+  },
+  {
+    id: "select",
+    name: "select",
+    icon: "select.svg",
+    type: "select",
+    metadata: {
+      defaultValue: "",
+      label: "select",
+      isDisabled: false,
+      options: {
+        options1: {
+          value: "option1",
+          label: "option 1",
+        },
+        options2: {
+          value: "option2",
+          label: "option 2",
+          id: "option2",
+        },
+        options3: {
+          value: "option3",
+          label: "option 3",
+          id: "option3",
+        },
+      },
     },
     validation: {
       required: true,

@@ -14,12 +14,14 @@ const generateWidget = (
   metadata: GenericObject,
   type: string,
   validation: GenericObject,
+  order: number,
 ) => {
   return {
     id: uuid(),
     metadata: metadata,
     type: type,
     validation,
+    order,
   };
 };
 function FormBuilderContainer() {
@@ -42,19 +44,22 @@ function FormBuilderContainer() {
     metadata: GenericObject,
     validation: GenericObject,
   ) => {
-    const newWidget = generateWidget(metadata, type, validation);
+    const maxOrder =
+      Object.values(formState.widgets).sort((a, b) => b?.order - a?.order)[0]
+        ?.order || 0;
+    const newWidget = generateWidget(metadata, type, validation, maxOrder + 1);
     dispatch(setAddFormComponent(newWidget));
   };
 
   return (
     <>
-      <div className="w-full p-4 max-h-[80vh] flex justify-center">
+      <div className="w-full p-4 max-h-[90vh] flex justify-center">
         <ComponentsModal
           isOpen={isHandleAddComponentDialogVisible}
           onClose={closeWidgetSelector}
           onWidgetSelected={onWidgetSelected}
         />
-        <Card className="p-4 w-[600px]">
+        <Card className="p-4 w-[600px] overflow-auto">
           <TypographyH4> New Form</TypographyH4>
           {formState?.widgets ? (
             <FormRenderer formState={formState?.widgets} />

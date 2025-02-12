@@ -36,7 +36,7 @@ function ComponentsModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Widgets</DialogTitle>
-          <DialogDescription className="flex gap-2 pt-4 pb-8">
+          <DialogDescription className="flex gap-2 pt-4 pb-8 flex-wrap">
             {widgets.map((widget) => (
               <Card
                 key={widget.id}
@@ -48,7 +48,7 @@ function ComponentsModal({
                   );
                   onClose();
                 }}
-                className="h-[60px] w-[80px] flex flex-col items-center gap-1 cursor-pointer">
+                className="h-[60px] w-[80px] flex flex-col items-center gap-1 cursor-pointer mb-8">
                 <img src={widget?.icon} height="60px" width="60px" />
                 <Label className="text-start"> {widget.name}</Label>
               </Card>

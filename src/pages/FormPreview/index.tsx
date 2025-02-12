@@ -11,6 +11,7 @@ import { TypographyH4 } from "@/components/ui/typographyH4";
 import Textarea from "@/components/widgets/TextArea";
 import NumberInput from "@/components/widgets/NumberInput";
 import { DatePicker } from "@/components/ui/datePicker";
+import SelectWidget from "@/components/widgets/Select";
 
 function FormPreview() {
   const formState = useSelector((state: RootState) => state.form.form.widgets);
@@ -111,68 +112,94 @@ function FormPreview() {
         <form onSubmit={handleSubmit} className="p-4 w-full">
           <TypographyH4>Form Preview</TypographyH4>
           <div className="flex flex-col gap-4 w-full">
-            {Object.entries(formState || {}).map(([key, value]) => {
-              const error = errors[key];
-              return (
-                <div key={key} className="mt-1">
-                  {value.type === "text" ? <Text {...value.metadata} /> : null}
-                  {value.type === "inputGeneric" ? (
-                    <div>
-                      <TextInput
-                        {...value.metadata}
-                        defaultValue={formValues[key] || ""}
-                        onChange={(e) => handleInputChange(key, e.target.value)}
-                        error={error}
-                      />
-                      {error && (
-                        <span className="text-red-500 text-sm">{error}</span>
-                      )}
-                    </div>
-                  ) : null}
-                  {value.type === "inputNumber" ? (
-                    <div>
-                      <NumberInput
-                        {...value.metadata}
-                        defaultValue={formValues[key] || ""}
-                        onChange={(e) => handleInputChange(key, e.target.value)}
-                        error={error}
-                      />
-                      {error && (
-                        <span className="text-red-500 text-sm">{error}</span>
-                      )}
-                    </div>
-                  ) : null}
-                  {value.type === "textArea" ? (
-                    <div>
-                      <Textarea
-                        {...value.metadata}
-                        defaultValue={formValues[key] || ""}
-                        onChange={(e) => handleInputChange(key, e.target.value)}
-                        error={error}
-                      />
-                      {error && (
-                        <span className="text-red-500 text-sm">{error}</span>
-                      )}
-                    </div>
-                  ) : null}
-                  {value.type === "datePicker" ? (
-                    <div>
-                      <DatePicker
-                        {...value.metadata}
-                        defaultValue={formValues[key] || ""}
-                        onChange={(e: Date) =>
-                          handleInputChange(key, e.toDateString())
-                        }
-                        error={error}
-                      />
-                      {error && (
-                        <span className="text-red-500 text-sm">{error}</span>
-                      )}
-                    </div>
-                  ) : null}
-                </div>
-              );
-            })}
+            {Object.entries(formState || {})
+              .sort((a, b) => a[1]?.order - b[1]?.order)
+              .map(([key, value]) => {
+                const error = errors[key];
+                return (
+                  <div key={key} className="mt-1">
+                    {value.type === "text" ? (
+                      <Text {...value.metadata} />
+                    ) : null}
+                    {value.type === "inputGeneric" ? (
+                      <div>
+                        <TextInput
+                          {...value.metadata}
+                          defaultValue={formValues[key] || ""}
+                          onChange={(e) =>
+                            handleInputChange(key, e.target.value)
+                          }
+                          error={error}
+                        />
+                        {error && (
+                          <span className="text-red-500 text-sm">{error}</span>
+                        )}
+                      </div>
+                    ) : null}
+                    {value.type === "inputNumber" ? (
+                      <div>
+                        <NumberInput
+                          {...value.metadata}
+                          defaultValue={formValues[key] || ""}
+                          onChange={(e) =>
+                            handleInputChange(key, e.target.value)
+                          }
+                          error={error}
+                        />
+                        {error && (
+                          <span className="text-red-500 text-sm">{error}</span>
+                        )}
+                      </div>
+                    ) : null}
+                    {value.type === "textArea" ? (
+                      <div>
+                        <Textarea
+                          {...value.metadata}
+                          defaultValue={formValues[key] || ""}
+                          onChange={(e) =>
+                            handleInputChange(key, e.target.value)
+                          }
+                          error={error}
+                        />
+                        {error && (
+                          <span className="text-red-500 text-sm">{error}</span>
+                        )}
+                      </div>
+                    ) : null}
+                    {value.type === "datePicker" ? (
+                      <div>
+                        <DatePicker
+                          {...value.metadata}
+                          defaultValue={formValues[key] || ""}
+                          onChange={(e: Date) =>
+                            handleInputChange(key, e.toDateString())
+                          }
+                          error={error}
+                        />
+                        {error && (
+                          <span className="text-red-500 text-sm">{error}</span>
+                        )}
+                      </div>
+                    ) : null}
+                    {value.type === "select" ? (
+                      <div>
+                        <SelectWidget
+                          {...value.metadata}
+                          defaultValue={
+                            formValues[key] || value?.metadata?.defaultValue
+                          }
+                          onChange={(e: string) => handleInputChange(key, e)}
+                          options={value.metadata.options}
+                          error={error}
+                        />
+                        {error && (
+                          <span className="text-red-500 text-sm">{error}</span>
+                        )}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
             <Button type="submit" className="self-end">
               Submit
             </Button>
