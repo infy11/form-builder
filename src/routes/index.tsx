@@ -14,7 +14,6 @@ const routes = [
     children: [
       {
         index: true,
-        path: "/form-builder",
         element: <FormBuilder />,
       },
       {
