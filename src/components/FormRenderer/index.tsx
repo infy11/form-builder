@@ -7,6 +7,7 @@ import NumberInput from "@/components/widgets/NumberInput";
 import TextArea from "@/components/widgets/TextArea";
 import { DatePicker } from "@/components/ui/datePicker";
 import Select from "@/components/widgets/Select";
+import ComponentsMap from "@/data/componentsMap";
 
 function FormRenderer(widgets: any) {
   return (
@@ -16,54 +17,12 @@ function FormRenderer(widgets: any) {
         .map(([key, value]) => {
           return (
             <div key={key} className="mt-4">
-              {value.type === "text" ? (
-                <WidgetCustomizer
-                  Component={Text}
-                  metadata={value?.metadata}
-                  validation={value?.validation}
-                  widgetId={key}
-                />
-              ) : null}
-              {value.type === "inputGeneric" ? (
-                <WidgetCustomizer
-                  Component={TextInput}
-                  metadata={value?.metadata}
-                  validation={value?.validation}
-                  widgetId={key}
-                />
-              ) : null}
-              {value.type === "inputNumber" ? (
-                <WidgetCustomizer
-                  Component={NumberInput}
-                  metadata={value?.metadata}
-                  validation={value?.validation}
-                  widgetId={key}
-                />
-              ) : null}
-              {value.type === "textArea" ? (
-                <WidgetCustomizer
-                  Component={TextArea}
-                  metadata={value?.metadata}
-                  widgetId={key}
-                  validation={value?.validation}
-                />
-              ) : null}
-              {value.type === "datePicker" ? (
-                <WidgetCustomizer
-                  Component={DatePicker}
-                  metadata={value?.metadata}
-                  validation={value?.validation}
-                  widgetId={key}
-                />
-              ) : null}
-              {value.type === "select" ? (
-                <WidgetCustomizer
-                  Component={Select}
-                  metadata={value?.metadata}
-                  widgetId={key}
-                  validation={value?.validation}
-                />
-              ) : null}
+              <WidgetCustomizer
+                Component={ComponentsMap[value?.type]}
+                metadata={value?.metadata}
+                validation={value?.validation}
+                widgetId={key}
+              />
             </div>
           );
         })}

@@ -7,8 +7,6 @@ import FormBuilderContainer from "@/components/FormBuilderContainer";
 function FormBuilder() {
   return (
     <>
-      <Header />
-
       <div>
         <SidebarProvider defaultOpen={true}>
           <AppSidebar />
