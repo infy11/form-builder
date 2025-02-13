@@ -14,7 +14,7 @@ function Header() {
   };
 
   const handleOnResetClick = () => {
-    dispatch(resetState());
+    dispatch(resetState({}));
   };
   return (
     <Card className="h-[40px] p-2 pt-1 rounded-none">

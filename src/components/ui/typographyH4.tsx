@@ -1,7 +1,7 @@
 import React from "react";
 
 interface TypographyH4Props {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 export function TypographyH4({ children }: TypographyH4Props) {
   return (
